@@ -99,13 +99,16 @@ def generate_wordcloud(word_list, mask_name):
 
 # 情感分析
 def sentiment_analysis():
-
-path = '4903.txt'  #读取文件路径
-word_list =  get_word_list(path)
-wlf = word_list_filter(word_list, top = 50)
-visualization(wlf, 'pie')
-# words_frequency(word_list, 100)
+	pass
 
 
-# mask_name = '4903.png'
-# generate_wordcloud(word_list, mask_name)
+if __name__ == '__main__':
+	path = '4903.txt'  #读取文件路径
+	word_list =  get_word_list(path)
+	wlf = word_list_filter(word_list, top = 50)
+	visualization(wlf, 'pie')
+	# words_frequency(word_list, 100)
+
+
+	# mask_name = '4903.png'
+	# generate_wordcloud(word_list, mask_name)
