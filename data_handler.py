@@ -61,35 +61,50 @@ def purify_lyric_text(lyric_text, allow_duplicate = True):
 		purify_text.append(line)
 
 	if not allow_duplicate:
-		purify_text = set(purify_text)
+		purify_text = list(set(purify_text))
 
 	return purify_text
 
 
-def get_lyrics_from_artist_id(artist_id):
+def get_songs_from_artist_id(artist_id):
 	songs_list = []
 	
 	songs = api.get_artist_music(artist_id)
 	for song in songs:
 		song_details = {}
 		print('====> Getting lyric of {}'.format(song['name']))
-		song_details['name'] = song['name']
-		song_details['id'] = song['id']
 		song_lyric = api.get_music_lyric(song['id'])
-		song_details['lyric'] = song_lyric
+		if song_lyric:
+			song_details['name'] = song['name']
+			song_details['id'] = song['id']
+			song_lyric = purify_lyric_text(song_lyric)
+			song_details['lyric'] = song_lyric
 		
-		songs_list.append(song_details)
+			songs_list.append(song_details)
+		else:
+			print('Oops... no lyric')
 
 	return songs_list
 
 
-def get_lyrics_from_artists_list(artists_list):
-	lyric = {}
+def get_songs_from_artists_list(artists_list):
+	lyrics = {}
+	artists = []
+	artist = {}
 	
-	with open('./data/lyric.json', 'w') as f:
+	with open('./data/lyrics.json', 'w') as f:
+		
 		for artist_name, artist_id in artists_list.items():
 			print("'----Handling {}'s hot-song list-----".format(artist_name))
+			artist['name'] = artist_name
+			artist['id'] = artist_id
+			artist['songs'] = get_songs_from_artist_id(artist_id)
 
+			artists.append(artist)
+
+		lyrics['lyrics'] = artists
+		json.dump(lyrics, f)
+		print('-----Write Done-----')
 
 if __name__ == '__main__':
 	pass
