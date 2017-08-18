@@ -66,28 +66,31 @@ def purify_lyric_text(lyric_text, allow_duplicate = True):
 	return purify_text
 
 
-def get_songs_from_artist_id(artist_id):
-	songs_list = []
+def get_lyrics_from_artist_id(artist_id):
+	lyrics_list = []
 	
 	songs = api.get_artist_music(artist_id)
-	for song in songs:
+	
+	for song in songs:		
 		song_details = {}
 		print('====> Getting lyric of {}'.format(song['name']))
+		
 		song_lyric = api.get_music_lyric(song['id'])
+		
 		if song_lyric:
 			song_details['name'] = song['name']
 			song_details['id'] = song['id']
 			song_lyric = purify_lyric_text(song_lyric)
 			song_details['lyric'] = song_lyric
 		
-			songs_list.append(song_details)
+			lyrics_list.append(song_details)
 		else:
-			print('Oops... no lyric')
+			print('+++ Oops... no lyric +++')
 
-	return songs_list
+	return lyrics_list
 
 
-def get_songs_from_artists_list(artists_list):
+def get_lyrics_from_artists_list(artists_list):
 	lyrics = {}
 	artists = []
 	artist = {}
@@ -95,16 +98,56 @@ def get_songs_from_artists_list(artists_list):
 	with open('./data/lyrics.json', 'w') as f:
 		
 		for artist_name, artist_id in artists_list.items():
+			
 			print("'----Handling {}'s hot-song list-----".format(artist_name))
 			artist['name'] = artist_name
 			artist['id'] = artist_id
-			artist['songs'] = get_songs_from_artist_id(artist_id)
+			artist['songs'] = get_lyrics_from_artist_id(artist_id)
 
 			artists.append(artist)
 
 		lyrics['lyrics'] = artists
 		json.dump(lyrics, f)
-		print('-----Write Done-----')
+		
+	print('-----Write Done-----')
+
+
+
+def comments_handler(song_id): # in test
+	comments_list = []
+	comment_list = {}
+
+	more_comments = True
+	offset = 0
+	counter = 1
+
+	while more_comments:
+		results = api.get_music_comments(song_id, offset = offset)
+		for comment in results['comments']:
+			print('----Geting No. {} comment'.format(counter))
+			counter += 1
+			comment_list['content'] = comment['content']
+			comment_list['username'] = comment['user']['nickname']
+			comment_list['likedCount'] = comment['likedCount']
+
+			comments_list.append(comment_list)
+
+		more_comments = results['more']
+		offset += 1
+
+	print('-----Got {} comments'.format(results['total']))
+	return comments_list
+
+
+def get_comments_from_aritist_id(artist_id):
+	# song_details = {}
+	# songs = api.get_artist_music(artist_id)
+
+	# for song in songs:
+	# 	song_details['name'] = song['name']
+	# 	song_details['id'] = song['id']
+	pass
+
 
 if __name__ == '__main__':
 	pass

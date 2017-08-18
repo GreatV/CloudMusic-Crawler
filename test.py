@@ -64,6 +64,14 @@ def test_json_data_format():
 		data = json.load(f)
 	pprint(data)
 
+def test_comments_handler():
+	comments = dh.comments_handler(460685960)
+	
+	pprint(comments)
+	
+	# with open('./data/test.json', 'w') as f:
+	# 	json.dump(comments, f)
+
 
 if __name__ == '__main__':
-	pass
+	test_comments_handler()
