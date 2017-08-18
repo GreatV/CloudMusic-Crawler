@@ -7,7 +7,7 @@ import json
 
 
 def test_get_music_comments():
-	comments = api.get_music_comments(25906124, offset=0, total='fasle', limit=100)
+	comments = api.get_music_comments(25906124, offset=0, total='true', limit=100)
 	for comment in comments['comments']:
 		print(comment['user']['nickname']+'\n'+'-'*25+'\n'+comment['content']+'\n')
 		if comment['beReplied']:
