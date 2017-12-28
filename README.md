@@ -9,13 +9,13 @@
 
 爬虫部分主要是调用已有的 API。这部分的工作可以参考[NetEase-MusicBox](https://github.com/darknessomi/musicbox)，该作品作者实现了网易云音乐的命令行版，我用了一下还不错。主要参考了该作者的[api.py](https://github.com/darknessomi/musicbox/blob/master/NEMbox/api.py)部分。
 
-![Screenshot3.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/Screenshot3.png)
+![Screenshot3.png](https://i.loli.net/2017/12/28/5a44fdcfc0ba9.png)
 
 ## 文件处理
 
 该部分主要的工作是将所有歌词写入一个文件，同时每个作者的所有歌词也放入一个文件，以备后面的分析之用。
 
-![Screenshot4.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/Screenshot4.png)
+![Screenshot4.png](https://i.loli.net/2017/12/28/5a44fdcfdffae.png)
 
 本次获取的歌词大概 26000 行。
 
@@ -25,23 +25,23 @@
 
 我首先选取了一位歌手作为代表分析了一下词频，如下所示：
 
-![shisanfigure_2.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/shisanfigure_2.png)
+![shisanfigure_2.png](https://i.loli.net/2017/12/28/5a44fdcf52893.png)
 
-![figure_bar01.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/figure_bar01.png)
+![figure_bar01.png](https://i.loli.net/2017/12/28/5a44fdcf44e0e.png)
 
-![figure_pie01.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/figure_pie01.png)
+![figure_pie01.png](https://i.loli.net/2017/12/28/5a44fdcf85627.png)
 
 做了一个词云：
 
-![shisanfigure_1.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/shisanfigure_1.png)
+![shisanfigure_1.png](https://i.loli.net/2017/12/28/5a44fdcf7d383.png)
 
 然后。把所有的歌词都分析了一下，得到了如下饼状图：
 
-![fm3.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/fm3.png)
+![fm3.png](https://i.loli.net/2017/12/28/5a44fdcf7efac.png)
 
 还做了一个词云，如下所示：
 
-![fm0.png](http://bucket0zero-1253582002.file.myqcloud.com/mdimg/fm0.png)
+![fm0.png](https://i.loli.net/2017/12/28/5a44fdcf7cca2.png)
 
 ## 接下来的工作
 
