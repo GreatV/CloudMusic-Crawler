@@ -1,6 +1,12 @@
 certifi==2018.1.18
 chardet==3.0.4
+future==0.16.0
 idna==2.6
 jieba==0.39
+Jinja2==2.10
+jupyter-pip==0.3.1
+MarkupSafe==1.0
+Pillow==5.0.0
+pyecharts==0.3.1
 requests==2.18.4
 urllib3==1.22

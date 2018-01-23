@@ -1,5 +1,8 @@
-﻿# 网易云音乐爬虫
----
+﻿**新版即将到来。。。**
+
+![](https://i.loli.net/2018/01/23/5a672e59bbfab.png)
+
+![](https://i.loli.net/2018/01/23/5a672e63457b7.png)
 
 ## Introduction
 
@@ -47,7 +50,23 @@
 
 - 情绪分析
 - 云音乐的评论很精彩，可以做一下评论，看看有什么发现
-- 饼状图太丑，想换一个
 
+## 如何使用
 
+```
+virtualenv newenv
 
+git clone https://github.com/GreatV/CloudMusic-Crawler.git
+
+cd CloudMusic-Crawler
+
+pip install -r requirements.txt
+
+cd NEMCrawler
+
+python NEM_spider.py
+
+python text_mining.py
+
+firefox render.html
+```
