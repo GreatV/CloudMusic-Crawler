@@ -1,3 +1,3 @@
-jieba==0.39
-pyecharts==0.5.11
-requests==2.19.1
+jieba>=0.39
+pyecharts>=0.5.11
+requests>=2.20.0
