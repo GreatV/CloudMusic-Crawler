@@ -2,7 +2,8 @@ import json
 import jieba
 import re
 from collections import Counter
-from pyecharts import Bar, Pie
+from pyecharts.charts import Bar, Pie
+import pyecharts.options as opts
 from pprint import pprint
 
 
@@ -57,13 +58,26 @@ def plot_chart(counter, chart_type='Bar'):
     values = [item[1] for item in counter]
 
     if chart_type == 'Bar':
-        chart = Bar('词频统计')
-        chart.add('词频', items, values, is_more_utils=True)
+        # chart = Bar('词频统计')
+        # chart.add('词频', items, values, is_more_utils=True)
+        chart = (
+            Bar()
+            .add_xaxis(items)
+            .add_yaxis('词频', values)
+            .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+            .set_global_opts(title_opts=opts.TitleOpts(title='词频统计'))
+            )
     else:
-        chart = Pie('词频统计')
-        chart.add('词频', items, values, is_label_show=True, is_more_utils=True)
+        # chart = Pie('词频统计')
+        # chart.add('词频', items, values, is_label_show=True, is_more_utils=True)
+        chart = (
+            Pie()
+            .add_xaxis(items)
+            .add_yaxis('词频', values)
+            .set_series_opts(label_opts=opts.LabelOpts(is_show=True))
+            .set_global_opts(title_opts=opts.TitleOpts(title='词频统计'))
+            )
     
-    chart.show_config()
     chart.render()
 
 
@@ -77,7 +91,8 @@ def main():
     with open('data/stop_words.txt') as f:
         stop_words = f.read().split('\n')
 
-    lyric = data[0]
+    # 此处仅选择一首歌
+    lyric = data[1]
     lyric = format_content(lyric)
 
     seg_list = word_segmentation(lyric, stop_words)
