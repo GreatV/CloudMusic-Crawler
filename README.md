@@ -60,6 +60,10 @@ git clone https://github.com/GreatV/CloudMusic-Crawler.git
 
 cd CloudMusic-Crawler
 
+python3 -m venv venv
+
+source venv/bin/activate
+
 pip install -r requirements.txt
 
 cd NEMCrawler
