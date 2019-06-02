@@ -54,8 +54,6 @@
 ## 如何使用
 
 ```
-virtualenv newenv
-
 git clone https://github.com/GreatV/CloudMusic-Crawler.git
 
 cd CloudMusic-Crawler
